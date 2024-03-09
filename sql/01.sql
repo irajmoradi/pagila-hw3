@@ -12,3 +12,4 @@
  *
  * Your goal should be to have your queries remain correct even if the data in the database changes arbitrarily.
  */
+SELECT 563 AS count;

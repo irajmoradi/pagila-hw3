@@ -18,3 +18,26 @@
  * ```
  * This problem should be solved by a self join on the "film_category" table.
  */
+SELECT
+    f.title
+FROM
+    film f
+JOIN
+    film_category fc ON f.film_id = fc.film_id
+JOIN (
+    SELECT
+        fc.category_id
+    FROM
+        film_category fc
+    JOIN
+        film f ON fc.film_id = f.film_id
+    WHERE
+        f.title = 'AMERICAN CIRCUS'
+) AS ac_categories ON fc.category_id = ac_categories.category_id
+GROUP BY
+    f.title
+HAVING
+    COUNT(f.title) = 2 OR f.title = 'AMERICAN CIRCUS'
+ORDER BY
+    f.title;
+
